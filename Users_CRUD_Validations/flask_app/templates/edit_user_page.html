@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+</head>
+<body class="bg-zinc-900 text-gray-100">
+    <div id="wrapper" class="w-2/5 mx-auto flex flex-col">
+        <div id="nav_bar" class="flex justify-between items-center px-4">
+            <p class="font-bold text-4xl mt-4">Edit Profile </p>
+            <a href="/" class="underline text-blue-500 mt-4">Home</a>
+        </div>
+        <form action="/process/edit" method="POST" class="border-2 bg-amber-400 border-zinc-500 mt-4 p-8">
+            <h1 class="font-bold text-4xl text-zinc-800 mb-4">{{ user_info.first_name}} {{ user_info.last_name }}</h1>
+            <input type="hidden" name="id" value="{{user_info.id}}">
+
+            <div class="flex flex-col">
+                <label for="first_name" class="my-2 font-semibold text-xl text-zinc-700">First Name:</label>
+                <input type="text" name="first_name" id="first_name" value="{{user_info.first_name}}" class="pl-2 border-2 border-zinc-700 w-4/5 text-zinc-700">
+            </div>
+
+            <div class="flex flex-col">
+                <label for="last_name" class="my-2 font-semibold text-xl text-zinc-700">Last Name:</label>
+                <input type="text" name="last_name" id="last_name" value="{{user_info.last_name}}" class="pl-2 border-2 border-zinc-700 w-4/5 text-zinc-700">
+            </div>
+
+            <div class="flex flex-col">
+                <label for="email" class="my-2 font-semibold text-xl text-zinc-700">Email:</label>
+                <input type="text" name="email" id="email" value="{{user_info.email}}" class="pl-2 border-2 border-zinc-700 w-4/5 text-zinc-700">
+            </div>
+
+            <button type="submit" class=" bg-zinc-900 border border-red-200 px-4 py-2 transition duration-50 font-semibold hover:bg-red-500 hover:text-white text-xl cursor-pointer mt-8 w-1/5">Update</button>
+            <a href="/users/{{user_info.id}}" class="underline text-blue-500 mt-4 ml-4">Show User</a>
+        </form>
+    </div>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

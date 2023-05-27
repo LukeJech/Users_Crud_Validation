@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+</head>
+<body class="bg-zinc-900 text-gray-100">
+    <div id="wrapper" class="w-3/5 mx-auto flex flex-col">
+        <h1 class="font-bold text-4xl mt-4">All Users</h1>
+        <table class="border-2 border-zinc-500 mt-4">
+            <thead>
+                <tr class="bg-zinc-800">
+                    <th class="p-6 text-center">ID</th>
+                    <th class="p-6 text-center">Full Name</th>
+                    <th class="p-6 text-center">Email</th>
+                    <th class="p-6 text-center">Created At</th>
+                    <th class="p-6 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in all_users %}
+                {% if user.id % 2 == 0 %}
+                <tr class="bg-amber-300">
+                {% else %}
+                <tr class="bg-amber-400">
+                {% endif %}
+                    <td class="p-6 text-center">{{user.id}}</td>
+                    <td class="p-6 text-center">{{user.first_name}} {{user.last_name}}</td>
+                    <td class="p-6 text-center">{{user.email}}</td>
+                    <td class="p-6 text-center">{{user.created_at}}</td>
+                    <td>
+                        <a href="/users/{{user.id}}" class="underline text-blue-500 mt-4">Show</a>
+                        <a href="/users/{{user.id}}/edit" class="underline text-blue-500 mt-4">Edit</a>
+                        <a href="/users/delete/{{user.id}}" class="underline text-blue-500 mt-4">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/create" class="underline text-blue-500 mt-4">Add A New User</a>
+    </div>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->
